@@ -1,5 +1,6 @@
-var startButton = document.getElementById("start")
+var startButton = document.querySelector("#start")
 var timerEl = document.querySelector("#time")
+var startScreen = document.querySelector("#start-screen")
 
 
 
@@ -8,7 +9,7 @@ var timeLeft
 // Function to start timer and count down in seconds
 
 function startTimer() {
-    timeLeft = 60;
+    timeLeft = 61;
     var timerInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft;
@@ -22,7 +23,12 @@ function startTimer() {
 
 
 var startQuiz = () => {
-  
+  startTimer();
+  hideStart();
+}
+
+function hideStart() {
+    startScreen.setAttribute("style", "display: none;");
 }
 
 
@@ -36,4 +42,4 @@ function hide_show(option) {
     }
 }
 
-// startButton.addEventListener("click", startTimer())
+startButton.addEventListener("click", startQuiz)
