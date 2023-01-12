@@ -20,32 +20,37 @@ function startTimer() {
 }
 
 
+// Function for switching visibility of each screen
 
-
-var startQuiz = () => {
-    startTimer();
-    changeStartScreen();
-}
-
-// Function for switching visibility of start screen
-
-var changeStartScreen = () => {
+var changeScreenState = (screen) => {
 
     // Gets state from dataset and saves to variable 
-    var state = startScreen.getAttribute("data-state");
+    var state = screen.getAttribute("data-state");
 
     // Tests whether that varibale is visible or hidden
     // If its visible, chnages to hidden when function is executed and changes data-sate to 'hidden'.
     if (state == "visible") {
-        startScreen.dataset.state = "hidden";
-        startScreen.setAttribute("style", "display: none");
+        screen.dataset.state = "hidden";
+        screen.setAttribute("style", "display: none");
 
         // If its hidden, becomes visible when function is exctd and data-state changed to visible. 
     } else if (state == "hidden") {
-        startScreen.dataset.state = "visible";
-        startScreen.setAttribute("style", " ");
+        screen.dataset.state = "visible";
+        screen.setAttribute("style", " ");
     }
 }
 
+var generateQuizQuestions = () => {
+
+}
+
+
+// Triggers startQuiz function on clikc of start button 
+
+
+var startQuiz = () => {
+    startTimer();
+    changeScreenState(startScreen);
+}
 
 startButton.addEventListener("click", startQuiz)
