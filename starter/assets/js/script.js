@@ -62,7 +62,7 @@ var quizQuestions = [
 ]
 
 var currentRound = 0
-var currentRoundAnswers = Object.values(quizQuestions[currentRound]);
+var currentRoundContent = Object.values(quizQuestions[currentRound]);
 
 
 
@@ -107,14 +107,15 @@ var changeScreenState = (screen) => {
 
 var generateQuizQuestions = () => {
 
- 
-   for (var i = 0; i < 4; i++) {
+    questionTitle.textContent = currentRoundContent[0];
 
-    var btn = document.createElement("button");
-    
+    for (var i = 0; i < 4; i++) {
+
+        var btn = document.createElement("button");
+
 
         btn.setAttribute("data-index", i);
-        btn.textContent = currentRoundAnswers[i + 1]
+        btn.textContent = currentRoundContent[i + 1]
         questionChoices.appendChild(btn);
 
     }
