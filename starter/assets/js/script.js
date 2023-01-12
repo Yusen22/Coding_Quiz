@@ -1,6 +1,7 @@
 var startButton = document.querySelector("#start")
 var timerEl = document.querySelector("#time")
 var startScreen = document.querySelector("#start-screen")
+var 
 
 var questionNumber = quizQuestions
 
@@ -90,7 +91,7 @@ var changeScreenState = (screen) => {
 }
 
 var generateQuizQuestions = () => {
-for (var i = 0; i < 4)
+for (var i = 0; i < 4; i++)
 }
 
 
