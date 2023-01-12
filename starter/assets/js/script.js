@@ -61,6 +61,10 @@ var quizQuestions = [
 
 ]
 
+var currentRound = 0
+var currentRoundAnswers = Object.values(quizQuestions[currentRound]);
+
+
 
 
 var timeLeft
@@ -106,12 +110,11 @@ var generateQuizQuestions = () => {
  
    for (var i = 0; i < 4; i++) {
 
-        
-    
     var btn = document.createElement("button");
+    
 
         btn.setAttribute("data-index", i);
-        btn.textContent = "hello";
+        btn.textContent = currentRoundAnswers[i + 1]
         questionChoices.appendChild(btn);
 
     }
