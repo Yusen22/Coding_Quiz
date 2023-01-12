@@ -99,21 +99,20 @@ var changeScreenState = (screen) => {
     }
 }
 
+
+
 var generateQuizQuestions = () => {
 
-    // Function to make the question screen visible
-    changeScreenState(questionScreen);
+ 
+   for (var i = 0; i < 4; i++) {
 
+        
+    
+    var btn = document.createElement("button");
 
-
-    for (var i = 0; i < 4; i++) {
-
-        questionTitle.
-
-        var li = document.createElement("button");
-
-        li.setAttribute("data-index", i);
-        li.textContent = quizQuestions[i][i = i + 1];
+        btn.setAttribute("data-index", i);
+        btn.textContent = "hello";
+        questionChoices.appendChild(btn);
 
     }
 
@@ -126,6 +125,7 @@ var generateQuizQuestions = () => {
 var startQuiz = () => {
     startTimer();
     changeScreenState(startScreen);
+    changeScreenState(questionScreen);
     generateQuizQuestions();
 
 }
