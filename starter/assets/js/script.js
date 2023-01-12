@@ -23,23 +23,29 @@ function startTimer() {
 
 
 var startQuiz = () => {
-  startTimer();
-  hideStart();
+    startTimer();
+    changeStartScreen();
 }
 
-function hideStart() {
-    startScreen.setAttribute("style", "display: none;");
-}
+// Function for switching visibility of start screen
 
+var changeStartScreen = () => {
 
-function hide_show(option) {
-    if (option === hide) {
+    // Gets state from dataset and saves to variable 
+    var state = startScreen.getAttribute("data-state");
 
-    } else if (option === show) {
+    // Tests whether that varibale is visible or hidden
+    // If its visible, chnages to hidden when function is executed and changes data-sate to 'hidden'.
+    if (state == "visible") {
+        startScreen.dataset.state = "hidden";
+        startScreen.setAttribute("style", "display: none");
 
-    } else {
-        return
+        // If its hidden, becomes visible when function is exctd and data-state changed to visible. 
+    } else if (state == "hidden") {
+        startScreen.dataset.state = "visible";
+        startScreen.setAttribute("style", " ");
     }
 }
+
 
 startButton.addEventListener("click", startQuiz)
