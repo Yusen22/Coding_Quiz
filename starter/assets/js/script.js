@@ -140,23 +140,27 @@ questionChoices.addEventListener("click", function (answer) {
 
     currentRound++;
     console.log("Current round is: " + currentRound)
-    currentRoundContent = Object.values(quizQuestions[currentRound]);
+    
 
 
     if ((currentRoundContent[5] - 1) == answer.dataset.index) {
         score++;
         console.log("Your score is: " + score);
+        currentRoundContent = Object.values(quizQuestions[currentRound]);
         // CORRECT MESSAGE TO GO HERE
         questionChoices.textContent = " ";
         generateQuizQuestions();
     
     } else if ((currentRoundContent[5] - 1) != answer.dataset.index) {
         console.log("Your score is: " + score)
+        currentRoundContent = Object.values(quizQuestions[currentRound]);
         // WRONG MESSAGE HERE 
         questionChoices.textContent = " ";
         generateQuizQuestions();
 
     }
+
+    
 
 })
 
