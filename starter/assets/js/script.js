@@ -163,6 +163,7 @@ questionChoices.addEventListener("click", function (event) {
         generateQuizQuestions();
 
     } else if ((currentRoundContent[5] - 1) != element.dataset.index) {
+        timeLeft = timeLeft - 10
         console.log("Your score is: " + score)
         currentRoundContent = Object.values(quizQuestions[currentRound]);
         // WRONG MESSAGE HERE 
