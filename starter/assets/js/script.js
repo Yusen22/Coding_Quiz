@@ -72,6 +72,8 @@ var timeLeft
 // Function to start timer and count down in seconds
 
 function startTimer() {
+
+    // Resets timer to initial value 
     timeLeft = 61;
     var timerInterval = setInterval(function () {
         timeLeft--;
@@ -144,37 +146,50 @@ var startQuiz = () => {
     generateQuizQuestions();
 }
 
+// Event listener for click on question buttons
 
 questionChoices.addEventListener("click", function (event) {
+
+    // Sets element to variable when target is clicked
     var element = event.target;
-    
+
+    // Checks if element var is button. Executes code if so. 
     if (element.matches("button") === true) {
-        
-    currentRound++;
-    console.log("Current round is: " + currentRound)
+
+        // Stops button from bubbling to parent elements 
+        event.stopPropagation();
+
+        // Increments current round by 1 and prints to console
+        currentRound++;
+        console.log("Current round is: " + currentRound)
 
 
-    if ((currentRoundContent[5] - 1) == element.dataset.index) {
-        score++;
-        console.log("Your score is: " + score);
-        currentRoundContent = Object.values(quizQuestions[currentRound]);
-        // CORRECT MESSAGE TO GO HERE
-        questionChoices.textContent = " ";
-        generateQuizQuestions();
+        if ((currentRoundContent[5] - 1) == element.dataset.index) {
+            score++;
+            console.log("Your score is: " + score);
+            currentRoundContent = Object.values(quizQuestions[currentRound]);
+            // CORRECT MESSAGE TO GO HERE
 
-    } else if ((currentRoundContent[5] - 1) != element.dataset.index) {
-        timeLeft = timeLeft - 10
-        console.log("Your score is: " + score)
-        currentRoundContent = Object.values(quizQuestions[currentRound]);
-        // WRONG MESSAGE HERE 
-        questionChoices.textContent = " ";
-        generateQuizQuestions();
+            // Resets button text to empty string upon click 
+            questionChoices.textContent = " ";
+
+            // Reruns code to generate new quiz questions
+            generateQuizQuestions();
+
+        } else if ((currentRoundContent[5] - 1) != element.dataset.index) {
+            timeLeft = timeLeft - 10
+            console.log("Your score is: " + score)
+            currentRoundContent = Object.values(quizQuestions[currentRound]);
+            // WRONG MESSAGE HERE 
+            questionChoices.textContent = " ";
+            generateQuizQuestions();
+
+        }
+
+
 
     }
-
-
-
-}})
+})
 
 
 startButton.addEventListener("click", startQuiz)
