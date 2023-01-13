@@ -85,6 +85,12 @@ function startTimer() {
     }, 1000);
 }
 
+var resultTime
+
+
+
+
+
 function setScore() {
     console.log("Your score is " + score);
     localStorage.setItem("score", score);
@@ -107,7 +113,7 @@ var changeScreenState = (screen) => {
         screen.dataset.state = "hidden";
         screen.setAttribute("style", "display: none");
 
-        // If its hidden, becomes visible when function is exctd and data-state changed to visible. 
+        // If its hidden, becomes visible when function is executed and data-state changed to visible. 
     } else if (state == "hidden") {
         screen.dataset.state = "visible";
         screen.setAttribute("style", " ");
@@ -163,13 +169,34 @@ questionChoices.addEventListener("click", function (event) {
         currentRound++;
         console.log("Current round is: " + currentRound)
 
+        // Creates div element to display CORRECT or INCORRECT
+        var resultDiv = document.createElement("div");
+        resultDiv.setAttribute("data-state", "visible");
+        resultDiv.setAttribute("id", "result-div");
+        resultDiv.setAttribute("style", "border-top: 5px solid grey");
+        questionScreen.appendChild(resultDiv);
+
+        function closeResultMessage() {
+            resultTime = 2;
+            var resultInterval = setInterval(function () {
+                resultTime = resultTime - 2;
+                if (resultTime == 0)
+                    clearInterval(resultInterval);
+                console.log("CHANGE");
+                questionScreen.removeChild(resultDiv)
+
+            }, 2000)
+        }
+
+        closeResultMessage();
 
         if ((currentRoundContent[5] - 1) == element.dataset.index) {
             score++;
             console.log("Your score is: " + score);
             currentRoundContent = Object.values(quizQuestions[currentRound]);
-            // CORRECT MESSAGE TO GO HERE
 
+            // CORRECT MESSAGE TO GO HERE
+            resultDiv.textContent = "Correct!"
             // Resets button text to empty string upon click 
             questionChoices.textContent = " ";
 
@@ -180,11 +207,15 @@ questionChoices.addEventListener("click", function (event) {
             timeLeft = timeLeft - 10
             console.log("Your score is: " + score)
             currentRoundContent = Object.values(quizQuestions[currentRound]);
+
             // WRONG MESSAGE HERE 
+            resultDiv.textContent = "Wrong!"
             questionChoices.textContent = " ";
             generateQuizQuestions();
 
         }
+
+        
 
 
 
