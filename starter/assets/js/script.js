@@ -79,14 +79,12 @@ function startTimer() {
         if (timeLeft === 0) {
             clearInterval(timerInterval);
             setScore();
-
-
         }
     }, 1000);
 }
 
 function setScore() {
-    console.log("Done");
+    console.log("Your score is " + score);
     localStorage.setItem("score", score);
     changeScreenState(questionScreen);
     changeScreenState(endScreen);
@@ -147,15 +145,16 @@ var startQuiz = () => {
 }
 
 
-questionChoices.addEventListener("click", function (answer) {
-    var answer = answer.target;
-
+questionChoices.addEventListener("click", function (event) {
+    var element = event.target;
+    
+    if (element.matches("button") === true) {
+        
     currentRound++;
     console.log("Current round is: " + currentRound)
 
 
-
-    if ((currentRoundContent[5] - 1) == answer.dataset.index) {
+    if ((currentRoundContent[5] - 1) == element.dataset.index) {
         score++;
         console.log("Your score is: " + score);
         currentRoundContent = Object.values(quizQuestions[currentRound]);
@@ -163,7 +162,7 @@ questionChoices.addEventListener("click", function (answer) {
         questionChoices.textContent = " ";
         generateQuizQuestions();
 
-    } else if ((currentRoundContent[5] - 1) != answer.dataset.index) {
+    } else if ((currentRoundContent[5] - 1) != element.dataset.index) {
         console.log("Your score is: " + score)
         currentRoundContent = Object.values(quizQuestions[currentRound]);
         // WRONG MESSAGE HERE 
@@ -174,7 +173,7 @@ questionChoices.addEventListener("click", function (answer) {
 
 
 
-})
+}})
 
 
 startButton.addEventListener("click", startQuiz)
