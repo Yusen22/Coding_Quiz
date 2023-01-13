@@ -64,8 +64,7 @@ var quizQuestions = [
 var currentRound = 0
 var currentRoundContent = Object.values(quizQuestions[currentRound]);
 
-
-
+var score = 0
 
 var timeLeft
 
@@ -104,9 +103,12 @@ var changeScreenState = (screen) => {
 }
 
 
+// Function to generate question title and four buttons with quiz questions
+
 
 var generateQuizQuestions = () => {
 
+    // Sets title to first value in variable, which is title
     questionTitle.textContent = currentRoundContent[0];
 
     for (var i = 0; i < 4; i++) {
@@ -119,7 +121,6 @@ var generateQuizQuestions = () => {
         questionChoices.appendChild(btn);
 
     }
-
 }
 
 
@@ -131,7 +132,45 @@ var startQuiz = () => {
     changeScreenState(startScreen);
     changeScreenState(questionScreen);
     generateQuizQuestions();
+}
+
+
+questionChoices.addEventListener("click", function (answer) {
+    var answer = answer.target;
+
+    currentRound++;
+    console.log("Current round is: " + currentRound)
+    currentRoundContent = Object.values(quizQuestions[currentRound]);
+
+
+    if ((currentRoundContent[5] - 1) == answer.dataset.index) {
+        score++;
+        console.log("Your score is: " + score);
+        // CORRECT MESSAGE TO GO HERE
+        questionChoices.textContent = " ";
+        generateQuizQuestions();
+    
+    } else if ((currentRoundContent[5] - 1) != answer.dataset.index) {
+        console.log("Your score is: " + score)
+        // WRONG MESSAGE HERE 
+        questionChoices.textContent = " ";
+        generateQuizQuestions();
+
+    }
+
+})
+
+
+var nextQuestion = () => {
 
 }
 
+
+if (timeLeft == 0) {
+    changeScreenState(questionScreen);
+    changeScreenState(endScreen);
+}
+
+
 startButton.addEventListener("click", startQuiz)
+
