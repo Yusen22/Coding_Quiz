@@ -5,6 +5,7 @@ var questionScreen = document.querySelector('#questions')
 var questionTitle = document.querySelector('#question-title')
 var questionChoices = document.querySelector('#choices')
 var endScreen = document.querySelector('#end-screen')
+var finalScoreSpan = document.querySelector('#final-score')
 
 var questionNumber = quizQuestions
 
@@ -71,12 +72,18 @@ var timeLeft
 // Function to start timer and count down in seconds
 
 function startTimer() {
-    timeLeft = 61;
+    timeLeft = 21;
     var timerInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft;
         if (timeLeft === 0) {
             clearInterval(timerInterval);
+            console.log("Done")
+            localStorage.setItem("score", score)
+            changeScreenState(questionScreen);
+            changeScreenState(endScreen);
+            finalScoreSpan.textContent = score;
+
         }
     }, 1000);
 }
@@ -140,7 +147,7 @@ questionChoices.addEventListener("click", function (answer) {
 
     currentRound++;
     console.log("Current round is: " + currentRound)
-    
+
 
 
     if ((currentRoundContent[5] - 1) == answer.dataset.index) {
@@ -150,7 +157,7 @@ questionChoices.addEventListener("click", function (answer) {
         // CORRECT MESSAGE TO GO HERE
         questionChoices.textContent = " ";
         generateQuizQuestions();
-    
+
     } else if ((currentRoundContent[5] - 1) != answer.dataset.index) {
         console.log("Your score is: " + score)
         currentRoundContent = Object.values(quizQuestions[currentRound]);
@@ -160,20 +167,9 @@ questionChoices.addEventListener("click", function (answer) {
 
     }
 
-    
+
 
 })
-
-
-var nextQuestion = () => {
-
-}
-
-
-if (timeLeft == 0) {
-    changeScreenState(questionScreen);
-    changeScreenState(endScreen);
-}
 
 
 startButton.addEventListener("click", startQuiz)
