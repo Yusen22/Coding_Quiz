@@ -72,20 +72,25 @@ var timeLeft
 // Function to start timer and count down in seconds
 
 function startTimer() {
-    timeLeft = 21;
+    timeLeft = 61;
     var timerInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft;
         if (timeLeft === 0) {
             clearInterval(timerInterval);
-            console.log("Done")
-            localStorage.setItem("score", score)
-            changeScreenState(questionScreen);
-            changeScreenState(endScreen);
-            finalScoreSpan.textContent = score;
+            setScore();
+
 
         }
     }, 1000);
+}
+
+function setScore() {
+    console.log("Done");
+    localStorage.setItem("score", score);
+    changeScreenState(questionScreen);
+    changeScreenState(endScreen);
+    finalScoreSpan.textContent = score;
 }
 
 
