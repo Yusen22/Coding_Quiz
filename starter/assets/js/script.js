@@ -76,7 +76,7 @@ function startTimer() {
     var timerInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft;
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clearInterval(timerInterval);
             setScore();
         }
