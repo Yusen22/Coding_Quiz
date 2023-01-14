@@ -5,6 +5,7 @@ var questionScreen = document.querySelector('#questions')
 var questionTitle = document.querySelector('#question-title')
 var questionChoices = document.querySelector('#choices')
 var endScreen = document.querySelector('#end-screen')
+var scoreSubmitButton = document.querySelector('#submit')
 var finalScoreSpan = document.querySelector('#final-score')
 
 var questionNumber = quizQuestions
@@ -69,6 +70,9 @@ var score = 0
 
 var timeLeft
 
+var currentUser = {}
+var highscores = []
+
 // Function to start timer and count down in seconds
 
 function startTimer() {
@@ -80,23 +84,24 @@ function startTimer() {
         timerEl.textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            setScore();
+            logScore();
         }
     }, 1000);
 }
 
-var resultTime
 
-
-
-
-
-function setScore() {
+function logScore() {
     console.log("Your score is " + score);
-    localStorage.setItem("score", score);
     changeScreenState(questionScreen);
     changeScreenState(endScreen);
     finalScoreSpan.textContent = score;
+}
+
+var setHighScore = () => {
+    var initial = document.getElementById('initials').value
+    currentUser.initials = initial;
+    currentUser.score = score 
+    localStorage.setItem('initial', initial)
 }
 
 
@@ -170,6 +175,7 @@ questionChoices.addEventListener("click", function (event) {
         console.log("Current round is: " + currentRound)
 
         // Creates div element to display CORRECT or INCORRECT
+       
         var resultDiv = document.createElement("div");
         resultDiv.setAttribute("data-state", "visible");
         resultDiv.setAttribute("id", "result-div");
@@ -177,15 +183,16 @@ questionChoices.addEventListener("click", function (event) {
         questionScreen.appendChild(resultDiv);
 
         function closeResultMessage() {
-            resultTime = 2;
+            var resultTime;
+            resultTime = 1;
             var resultInterval = setInterval(function () {
-                resultTime = resultTime - 2;
-                if (resultTime == 0)
+                resultTime--;
+                if (resultTime <= 0)
                     clearInterval(resultInterval);
                 console.log("CHANGE");
                 questionScreen.removeChild(resultDiv)
 
-            }, 2000)
+            }, 1000)
         }
 
         closeResultMessage();
@@ -214,14 +221,11 @@ questionChoices.addEventListener("click", function (event) {
             generateQuizQuestions();
 
         }
-
-        
-
-
-
     }
 })
 
 
 startButton.addEventListener("click", startQuiz)
+
+scoreSubmitButton.addEventListener("click", setHighScore)
 
