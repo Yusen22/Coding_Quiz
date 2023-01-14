@@ -71,7 +71,7 @@ var score = 0
 var timeLeft
 
 var currentUser = {}
-var highscores = []
+var highScores = []
 
 // Function to start timer and count down in seconds
 
@@ -98,11 +98,23 @@ function logScore() {
 }
 
 var setHighScore = () => {
+
+    // Creates an object in currentUser from score var and initials value
     var initial = document.getElementById('initials').value
     currentUser.initials = initial;
     currentUser.score = score;
-    localStorage.setItem("highscores", JSON.stringify(currentUser));
-    window.location.href = './highscores.html';
+    var localHighScores = JSON.parse(localStorage.getItem("highscores"))
+    if (localHighScores === null) {
+        console.log("Highscores is empty");
+        highScores = currentUser;
+        localStorage.setItem("highscores", JSON.stringify(highScores));
+    } else {
+        highScores = (localHighScores += currentUser);
+        // localStorage.setItem("highscores", JSON.stringify(highScores));
+    }
+    
+    
+    // window.location.href = './highscores.html';
 }
 
 
@@ -228,5 +240,6 @@ questionChoices.addEventListener("click", function (event) {
 
 startButton.addEventListener("click", startQuiz);
 
+// Triggers setHighScore() on click of submit button 
 scoreSubmitButton.addEventListener("click", setHighScore)
 
