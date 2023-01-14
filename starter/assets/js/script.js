@@ -100,8 +100,9 @@ function logScore() {
 var setHighScore = () => {
     var initial = document.getElementById('initials').value
     currentUser.initials = initial;
-    currentUser.score = score 
-    localStorage.setItem('initial', initial)
+    currentUser.score = score;
+    localStorage.setItem("highscores", JSON.stringify(currentUser));
+    window.location.href = './highscores.html';
 }
 
 
@@ -225,7 +226,7 @@ questionChoices.addEventListener("click", function (event) {
 })
 
 
-startButton.addEventListener("click", startQuiz)
+startButton.addEventListener("click", startQuiz);
 
 scoreSubmitButton.addEventListener("click", setHighScore)
 
