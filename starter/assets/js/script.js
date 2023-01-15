@@ -110,19 +110,19 @@ var setHighScore = () => {
     currentUser.score = score;
     localHighScores = localStorage.getItem("highscores");
     parsedLocal = JSON.parse(localHighScores);
-    // if (parsedLocal === null) {
-    //     console.log("Highscores is empty");
-    //     highScores = currentUser;
-    //     localStorage.setItem("highscores", JSON.stringify(highScores));
-    // } else {
+    if (parsedLocal === null) {
+        console.log("Highscores is empty");
+        highScores = currentUser;
+        localStorage.setItem("highscores", JSON.stringify(highScores));
+    } else {
         
-    //     highScores = (parsedLocal += currentUser);
-    //     // localStorage.setItem("highscores", JSON.stringify(highScores));
+        highScores = (parsedLocal += currentUser);
+        // localStorage.setItem("highscores", JSON.stringify(highScores));
     }
     
     
     // window.location.href = './highscores.html';
-// }
+}
 
 
 // Function for switching visibility of each screen by its data-state value
