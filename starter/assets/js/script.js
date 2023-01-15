@@ -71,14 +71,14 @@ var score = 0
 var timeLeft
 
 var currentUser = {}
-var highScores
+var highScores = []
 
 // Function to start timer and count down in seconds
 
 function startTimer() {
 
     // Resets timer to initial value 
-    timeLeft = 61;
+    timeLeft = 51;
     var timerInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft;
@@ -109,15 +109,16 @@ var setHighScore = () => {
     currentUser.initials = initial;
     currentUser.score = score;
     localHighScores = localStorage.getItem("highscores");
-    parsedLocal = JSON.parse(localHighScores);
-    if (parsedLocal === null) {
+    if (localHighScores === null) {
         console.log("Highscores is empty");
-        highScores = currentUser;
+        highScores = [currentUser];
         localStorage.setItem("highscores", JSON.stringify(highScores));
     } else {
-        
-        highScores = (parsedLocal += currentUser);
-        // localStorage.setItem("highscores", JSON.stringify(highScores));
+        console.log("not first user")
+        parsedLocal = JSON.parse(localHighScores);
+        highScores = parsedLocal;
+        highScores.push(currentUser);
+        localStorage.setItem("highscores", JSON.stringify(highScores));
     }
     
     
