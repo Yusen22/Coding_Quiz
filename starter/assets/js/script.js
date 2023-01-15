@@ -71,7 +71,7 @@ var score = 0
 var timeLeft
 
 var currentUser = {}
-var highScores = []
+var highScores
 
 // Function to start timer and count down in seconds
 
@@ -97,25 +97,32 @@ function logScore() {
     finalScoreSpan.textContent = score;
 }
 
+var parsedLocal
+var localHighScores
+
 var setHighScore = () => {
+
+    
 
     // Creates an object in currentUser from score var and initials value
     var initial = document.getElementById('initials').value
     currentUser.initials = initial;
     currentUser.score = score;
-    var localHighScores = JSON.parse(localStorage.getItem("highscores"))
-    if (localHighScores === null) {
-        console.log("Highscores is empty");
-        highScores = currentUser;
-        localStorage.setItem("highscores", JSON.stringify(highScores));
-    } else {
-        highScores = (localHighScores += currentUser);
-        // localStorage.setItem("highscores", JSON.stringify(highScores));
+    localHighScores = localStorage.getItem("highscores");
+    parsedLocal = JSON.parse(localHighScores);
+    // if (parsedLocal === null) {
+    //     console.log("Highscores is empty");
+    //     highScores = currentUser;
+    //     localStorage.setItem("highscores", JSON.stringify(highScores));
+    // } else {
+        
+    //     highScores = (parsedLocal += currentUser);
+    //     // localStorage.setItem("highscores", JSON.stringify(highScores));
     }
     
     
     // window.location.href = './highscores.html';
-}
+// }
 
 
 // Function for switching visibility of each screen by its data-state value
