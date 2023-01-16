@@ -191,11 +191,13 @@ var highScores = []
 function startTimer() {
 
     // Resets timer to initial value 
-    timeLeft = 51;
+    timeLeft = 61;
     var timerInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = timeLeft;
         if (timeLeft <= 0) {
+            timeLeft = 0;
+            timerEl.textContent = timeLeft;
             clearInterval(timerInterval);
             logScore();
         }
