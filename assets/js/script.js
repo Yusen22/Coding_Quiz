@@ -123,7 +123,7 @@ var setHighScore = () => {
         highScores.push(currentUser);
         localStorage.setItem("highscores", JSON.stringify(highScores));
     }
-    
+
 }
 
 
@@ -168,6 +168,9 @@ var generateQuizQuestions = () => {
 
     }
 }
+
+
+
 
 
 // Triggers startQuiz function on clikc of start button 
@@ -220,6 +223,12 @@ questionChoices.addEventListener("click", function (event) {
 
         closeResultMessage();
 
+    }
+
+    if (currentRoundContent === null || currentRoundContent === undefined) {
+        logScore();
+    }
+    else {
         if ((currentRoundContent[5] - 1) == element.dataset.index) {
             score++;
             console.log("Your score is: " + score);
@@ -244,6 +253,7 @@ questionChoices.addEventListener("click", function (event) {
             generateQuizQuestions();
 
         }
+
     } return;
 })
 
@@ -251,7 +261,7 @@ questionChoices.addEventListener("click", function (event) {
 startButton.addEventListener("click", startQuiz);
 
 // Triggers setHighScore() on click of submit button 
-scoreSubmitButton.addEventListener("click", function() {
+scoreSubmitButton.addEventListener("click", function () {
     setHighScore();
     window.location.href = './highscores.html';
 })

@@ -23,7 +23,7 @@ var printHighScore = () => {
         var forHighScore = sortedHighScores[x];
         var initialAndScore = "Initials: " + forHighScore.initials + "   " + "Score: " + forHighScore.score;
         li.setAttribute("data-index", x);
-        li.textContent = initialAndScore;
+        li.innerHTML = initialAndScore;
         highScoresDiv.appendChild(li)
     }
 
