@@ -253,7 +253,6 @@ startButton.addEventListener("click", startQuiz);
 // Triggers setHighScore() on click of submit button 
 scoreSubmitButton.addEventListener("click", function() {
     setHighScore();
-    // window.location.href = './highscores.html';
-    printHighScore();
+    window.location.href = './highscores.html';
 })
 
