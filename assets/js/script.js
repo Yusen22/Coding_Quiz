@@ -7,7 +7,7 @@ var questionChoices = document.querySelector('#choices')
 var endScreen = document.querySelector('#end-screen')
 var scoreSubmitButton = document.querySelector('#submit')
 var finalScoreSpan = document.querySelector('#final-score')
-var highScoresDiv = document.querySelector('#highscores')
+
 
 var questionNumber = quizQuestions
 
@@ -100,7 +100,7 @@ function logScore() {
 
 var parsedLocal
 var localHighScores
-var testHighScores
+
 
 
 var setHighScore = () => {
@@ -123,22 +123,10 @@ var setHighScore = () => {
         highScores.push(currentUser);
         localStorage.setItem("highscores", JSON.stringify(highScores));
     }
-    printHighScore();
+    
 }
 
 
-var printHighScore = () => {
-    for (var x = 0; x < highScores.length; x++) {
-        var li = document.createElement("li");
-        // var forHighScore = highScores[x];
-        // var initialAndScore = "Initials: " + forHighScore.initials + "Score: " + forHighScore.score;
-
-        console.log("LIST ITEM");
-        // li.setAttribute("data-index", x);
-        li.textContent = "Hi there!";
-        highScoresDiv.appendChild(li)
-    }
-}
 
 // Function for switching visibility of each screen by its data-state value
 
@@ -265,6 +253,7 @@ startButton.addEventListener("click", startQuiz);
 // Triggers setHighScore() on click of submit button 
 scoreSubmitButton.addEventListener("click", function() {
     setHighScore();
-    window.location.href = './highscores.html';
+    // window.location.href = './highscores.html';
+    printHighScore();
 })
 
