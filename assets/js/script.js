@@ -64,7 +64,7 @@ var quizQuestions = [
     {
         title: "7. What does DOM stand for?",
         answer1: "District On Mutation",
-        answer2: "Dimunitive Open Moel",
+        answer2: "Dimunitive Open Model",
         answer3: "Deregistered On Setting",
         answer4: "Document Object Model",
         correctAnswerIndex: 4
