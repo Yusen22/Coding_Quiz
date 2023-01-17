@@ -39,7 +39,7 @@ clearButton.addEventListener("click", function () {
     if (clearAnswer === true) {
         localStorage.removeItem("highscores");
         alert("High scores have been cleared!");
-        window.location.href = './questions.html';
+        window.location.href = './index.html';
         }
    else {
     printHighScore();
