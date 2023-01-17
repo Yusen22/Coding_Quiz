@@ -357,7 +357,7 @@ questionChoices.addEventListener("click", function (event) {
                 // Reruns code to generate new quiz questions
                 generateQuizQuestions();
             } else {
-                setHighScore();
+                logScore();
                 window.location.href = './highscores.html';
             }
 
@@ -386,7 +386,7 @@ startButton.addEventListener("click", startQuiz);
 
 // Triggers setHighScore() on click of submit button 
 scoreSubmitButton.addEventListener("click", function () {
-    logScore();
+    setHighScore();
     window.location.href = './highscores.html';
 })
 

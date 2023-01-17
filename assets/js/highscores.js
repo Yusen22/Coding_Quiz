@@ -21,7 +21,7 @@ var printHighScore = () => {
     for (var x = 0; x < sortedHighScores.length && x < 10; x++) {
         var li = document.createElement("li");
         var forHighScore = sortedHighScores[x];
-        var initialAndScore = "<strong>Initials: </strong> " + forHighScore.initials + '   ' + "<strong>Score: </strong>" + forHighScore.score;
+        var initialAndScore = "<strong>Initials:</strong> " + forHighScore.initials + '   ' + "<strong>Score: </strong>" + forHighScore.score;
         li.setAttribute("data-index", x);
         li.innerHTML = initialAndScore;
         highScoresDiv.appendChild(li)
