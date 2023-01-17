@@ -3,7 +3,11 @@
 
 ## Description
 
-This project provides a quiz application that asks the user to answer questions on the subject on web development. Each user is given 60 seconds to complete the quiz, subject to a 10 second time penalty if an incorrect answer is provided. When the time expires, the user will be given the option to submit their initials and final score, and view the ten highest stored high scores. The quiz can then be restarted, or the stored high scores can be cleared from storage.  
+This project provides a quiz application that asks the user to answer questions on the subject on web development. Each user is given 60 seconds to complete the quiz, subject to a 10 second time penalty if an incorrect answer is provided. When the time expires, the user will be given the option to submit their initials and final score, and view the ten highest stored high scores. The quiz can then be restarted, or the stored high scores can be cleared from storage. 
+
+The application can be accessed here: https://yusen22.github.io/Coding_Quiz/
+
+A screenshot of the application can be viewed here: ![Screenshot-of-coding-quiz](./assets/Coding_quiz_index_screenshot.png "Screenshot of application")
 
 
 
