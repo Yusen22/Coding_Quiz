@@ -346,25 +346,35 @@ questionChoices.addEventListener("click", function (event) {
         if ((currentRoundContent[5] - 1) == element.dataset.index) {
             score++;
             console.log("Your score is: " + score);
-            currentRoundContent = Object.values(quizQuestions[currentRound]);
+            if (currentRound < 20) {
+                currentRoundContent = Object.values(quizQuestions[currentRound]);
 
-            // CORRECT MESSAGE TO GO HERE
-            resultDiv.textContent = "Correct!"
-            // Resets button text to empty string upon click 
-            questionChoices.textContent = " ";
+                // CORRECT MESSAGE TO GO HERE
+                resultDiv.textContent = "Correct!"
+                // Resets button text to empty string upon click 
+                questionChoices.textContent = " ";
 
-            // Reruns code to generate new quiz questions
-            generateQuizQuestions();
+                // Reruns code to generate new quiz questions
+                generateQuizQuestions();
+            } else {
+                setHighScore();
+                window.location.href = './highscores.html';
+            }
 
         } else if ((currentRoundContent[5] - 1) != element.dataset.index) {
             timeLeft = timeLeft - 10
             console.log("Your score is: " + score)
-            currentRoundContent = Object.values(quizQuestions[currentRound]);
+            if (currentRound < 20) {
+                currentRoundContent = Object.values(quizQuestions[currentRound]);
 
-            // WRONG MESSAGE HERE 
-            resultDiv.textContent = "Wrong!"
-            questionChoices.textContent = " ";
-            generateQuizQuestions();
+                // WRONG MESSAGE HERE 
+                resultDiv.textContent = "Wrong!"
+                questionChoices.textContent = " ";
+                generateQuizQuestions();
+            } else {
+                logScore();
+                window.location.href = './highscores.html';
+            }
 
         }
 
@@ -376,7 +386,7 @@ startButton.addEventListener("click", startQuiz);
 
 // Triggers setHighScore() on click of submit button 
 scoreSubmitButton.addEventListener("click", function () {
-    setHighScore();
+    logScore();
     window.location.href = './highscores.html';
 })
 
